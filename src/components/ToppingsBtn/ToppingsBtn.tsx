@@ -1,14 +1,5 @@
-import {MouseEventHandler} from "react";
-
-
-interface PropsForBtn {
-	name: string,
-	price: number,
-	image: string,
-	count?: number,
-	add?: MouseEventHandler,
-	delete?: MouseEventHandler,
-}
+import './ToppingsBtn.css'
+import {PropsForBtn} from "../../types";
 
 interface ToppingProps {
 	btn: PropsForBtn[],
@@ -17,7 +8,7 @@ interface ToppingProps {
 const ToppingsBtn:React.FC<ToppingProps> = (props) => {
 	const buttons = props.btn;
 	const btns = buttons.map((item) => (<div>
-			<button className='ToppingBtn' type='button' onClick={item.add}> <img alt='some pic' src={item.image}/> {item.name}</button>
+			<button className='ToppingsBtn' type='button' onClick={item.add}> <img alt='some pic' src={item.image}/> {item.name}</button>
 			<span> x{item.count} </span>
 			<button type='button' className='DeleteBtn' onClick={item.delete}> X </button>
 	</div> )

@@ -1,34 +1,18 @@
-import React, {MouseEventHandler, useState} from 'react';
+import React, {useState} from 'react';
 import Bacon from './assets/Bacon.png';
 import Meat from './assets/Meat.png';
 import Cheese from './assets/Cheese.png';
 import Salad from './assets/Salad.png';
-
+import {ingredientObj} from "./types";
+import {Ingredient} from "./types";
+import {PropsForBtn} from "./types";
 
 import './App.css';
 import Burger from "./components/Burger/Burger";
 import ToppingsBtn from "./components/ToppingsBtn/ToppingsBtn";
 
+
 function App() {
-	interface Ingredient {
-		name: string,
-		price: number,
-		image: string,
-	}
-
-	interface PropsForBtn {
-		name: string,
-		price: number,
-		image: string,
-		count?: number,
-		add?: MouseEventHandler,
-		delete?: MouseEventHandler,
-	}
-
-	interface ingredientObj {
-		name: string,
-		count: number
-	}
 
 	const INGREDIENTS: Ingredient[] = [
 		{name: 'Meat', price: 80, image: Meat},
@@ -37,7 +21,7 @@ function App() {
 		{name: 'Bacon', price: 60, image: Bacon},
 	];
 
-	const [ingredient, setIngredient] = useState([
+	const [ingredient, setIngredient] = useState<ingredientObj[]>([
 		{name: 'Meat', count: 0},
 		{name: 'Cheese', count: 0},
 		{name: 'Salad', count: 0},
@@ -48,8 +32,8 @@ function App() {
 		const ingCopy: PropsForBtn[] = [...INGREDIENTS]
 		ingCopy.map((item, index) => {
 			ingCopy[index].count = ingredient[index].count
-			ingCopy[index].add = () => ingredientAdd(item.name)!;
-			ingCopy[index].delete = () => deleteEl(item.name)!;
+			ingCopy[index].add = () => ingredientAdd(item.name);
+			ingCopy[index].delete = () => deleteEl(item.name);
 		})
 		return ingCopy
 	}

@@ -1,14 +1,11 @@
 import React from "react";
 import './Burger.css'
+import {ingredientObj} from "../../types";
 
 interface BurgerProps{
 	ingredients : ingredientObj[]
 }
 
-interface ingredientObj {
-	name: string,
-	count: number
-}
 
 const Burger:React.FC<BurgerProps> = (props) => {
 	const getDivs = (nameOfIngredient:string) =>{
